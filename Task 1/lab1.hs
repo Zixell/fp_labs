@@ -28,9 +28,8 @@ associate (a, (b ,c)) = ((a, b), c)
 --Task 2
 
 minMax :: Ord a => [a] -> Maybe (a, a)
-minMax lst
-    | null lst = Nothing
-    | otherwise = let  
+minMax [] = Nothing
+minMax lst = let  
             helper minCurr maxCurr [] = Just (minCurr, maxCurr)
             helper minCurr maxCurr (a : lstA) = helper (min minCurr a) (max maxCurr a) lstA
         in helper (head lst) (head lst) (tail lst)
