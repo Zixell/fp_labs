@@ -19,7 +19,7 @@ exchange (a,b) = (b,a)
 compose :: (b -> c) -> (a -> b) -> a -> c
 compose x y = x.y
 
-curry_ :: ((a,b) -> c) -> (a -> b -> c) -- Cant understand this for now. Figure it out!
+curry_ :: ((a,b) -> c) -> (a -> b -> c)
 curry_ k = (\z x y -> z (x, y)) k
 
 associate :: (a, (b, c)) -> ((a, b), c)
@@ -37,9 +37,8 @@ minMax lst = let
 --Task 3
 
 sumQuantity :: Integer -> (Integer, Integer)
-sumQuantity x 
-    |x == 0 = (0,1) 
-    |otherwise = let
+sumQuantity 0 = (0,1)
+sumQuantity x  = let
         currModTen c = c `mod` 10
         helper (sumCurr, lenCurr) curr 
             |curr == 0 = (sumCurr, lenCurr)
