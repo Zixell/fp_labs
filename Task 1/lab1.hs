@@ -1,3 +1,12 @@
+{-
+Zhuravlev Roman 5303
+
+Functional programming 
+
+Lab 1
+-}
+
+
 module HomeTask where
 
 import Data.List
