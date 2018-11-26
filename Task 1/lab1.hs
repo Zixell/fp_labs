@@ -48,10 +48,12 @@ minMax lst = let
 sumQuantity :: Integer -> (Integer, Integer)
 sumQuantity 0 = (0,1)
 sumQuantity x  = let
-        currModTen c = c `mod` 10
+        
         helper (sumCurr, lenCurr) curr 
             |curr == 0 = (sumCurr, lenCurr)
-            |curr > 0 =  helper (sumCurr + (currModTen curr), lenCurr + 1) ((curr - (currModTen curr)) `div` 10)
+            |curr > 0 =  let
+                currModTen = curr `mod` 10
+            in helper (sumCurr + currModTen, lenCurr + 1) ((curr - currModTen) `div` 10)
     in helper (0,0) (abs x)      
          
 --Task 4
