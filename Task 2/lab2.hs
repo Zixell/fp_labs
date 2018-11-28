@@ -22,20 +22,20 @@ circShiftL n xs = let (a, b) = splitAt (length xs - (abs n)) xs
 indices :: [a] -> [(Integer, a)]
 indices lst = zip [0 .. toInteger (length lst - 1)] lst
 
-zeroBy :: Num a => [a] -> (a -> Bool) -> [a]
+zeroBy :: Monoid a => [a] -> (a -> Bool) -> [a]
 zeroBy lst condition = map check lst where
-    check x = if (condition x) then x else 0
+    check x = if (condition x) then x else mempty
 
 triplewiseSum :: [Integer] -> [Integer] -> [Integer] -> [Integer]
 triplewiseSum l1 l2 l3 = zipWith (+) l1 (zipWith (+) l2 l3)
 
 -- Task 3
-revRange :: (Char, Char) -> [Char]
-revRange = unfoldr fun
-fun t 
-    |fst t >= snd t = Just (fst t, (prev (fst t), snd t))
-    |otherwise = Nothing where
-        prev c = chr (ord c - 1)
+revRange :: (Char,Char) -> [Char] 
+revRange = unfoldr fun 
+fun (begin, end) 
+    | begin > end = Nothing 
+    | minBound == end = Just (end, (succ begin, end)) 
+    | otherwise = Just (end, (begin, pred end))
 
 -- Task 4
 seriesK :: Int -> [Rational]
