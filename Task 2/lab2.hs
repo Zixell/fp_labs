@@ -20,7 +20,7 @@ circShiftL n xs = let (a, b) = splitAt (length xs - (abs n)) xs
 
 -- Task 2
 indices :: [a] -> [(Integer, a)]
-indices lst = zip [0 .. toInteger (length lst - 1)] lst
+indices lst = zip [0 .. ] lst
 
 zeroBy :: Monoid a => [a] -> (a -> Bool) -> [a]
 zeroBy lst condition = map check lst where
